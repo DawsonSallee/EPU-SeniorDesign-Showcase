@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  const CANVAS_W = 1920;
+  const CANVAS_H = 1080;
+
   const slides = Array.from(document.querySelectorAll(".slide"));
   const totalSlides = slides.length;
   let current = 0;
@@ -9,6 +12,7 @@
   let elapsedSeconds = 0;
   let clockInterval = null;
 
+  const slidesEl       = document.getElementById("slides");
   const progressFill   = document.getElementById("progress-fill");
   const sectionLabel   = document.getElementById("section-label");
   const slideCounter   = document.getElementById("slide-counter");
@@ -21,6 +25,24 @@
   const btnNotes       = document.getElementById("btn-notes");
   const notesClose     = document.getElementById("notes-close");
 
+  /* ───────────────────────────────────────────────────
+     VIEWPORT SCALING
+     Scale the fixed 1920×1080 canvas to fit any screen.
+     ─────────────────────────────────────────────────── */
+  function scaleToFit() {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const scale = Math.min(vw / CANVAS_W, vh / CANVAS_H);
+    slidesEl.style.transform =
+      "translate(-50%, -50%) scale(" + scale + ")";
+  }
+
+  window.addEventListener("resize", scaleToFit);
+  scaleToFit();
+
+  /* ───────────────────────────────────────────────────
+     TIMING HELPERS
+     ─────────────────────────────────────────────────── */
   function computeTotalDuration() {
     return slides.reduce((sum, s) => sum + (parseInt(s.dataset.duration, 10) || 20), 0);
   }
@@ -39,6 +61,9 @@
     return m + ":" + String(s).padStart(2, "0");
   }
 
+  /* ───────────────────────────────────────────────────
+     NAVIGATION
+     ─────────────────────────────────────────────────── */
   function goTo(index) {
     if (index < 0 || index >= totalSlides || index === current) return;
     const prev = current;
@@ -50,7 +75,6 @@
     slides[current].classList.add("active");
 
     updateUI();
-
     if (autoPlay) scheduleNext();
   }
 
@@ -74,6 +98,9 @@
     animateCounters();
   }
 
+  /* ───────────────────────────────────────────────────
+     AUTO-ADVANCE
+     ─────────────────────────────────────────────────── */
   function scheduleNext() {
     clearTimeout(autoTimer);
     if (!autoPlay || current >= totalSlides - 1) {
@@ -104,6 +131,9 @@
     autoPlay ? stopAuto() : startAuto();
   }
 
+  /* ───────────────────────────────────────────────────
+     CLOCK
+     ─────────────────────────────────────────────────── */
   function startClock() {
     elapsedSeconds = cumulativeDuration(current);
     updateClock();
@@ -114,18 +144,17 @@
     }, 1000);
   }
 
-  function stopClock() {
-    clearInterval(clockInterval);
-  }
+  function stopClock() { clearInterval(clockInterval); }
+  function updateClock() { timerCurrent.textContent = formatTime(elapsedSeconds); }
 
-  function updateClock() {
-    timerCurrent.textContent = formatTime(elapsedSeconds);
-  }
+  /* ───────────────────────────────────────────────────
+     SPEAKER NOTES
+     ─────────────────────────────────────────────────── */
+  function toggleNotes() { notesPanel.classList.toggle("open"); }
 
-  function toggleNotes() {
-    notesPanel.classList.toggle("open");
-  }
-
+  /* ───────────────────────────────────────────────────
+     ANIMATED COUNTERS
+     ─────────────────────────────────────────────────── */
   function animateCounters() {
     const counters = slides[current].querySelectorAll("[data-count]");
     counters.forEach(el => {
@@ -142,7 +171,9 @@
     });
   }
 
-  // Keyboard nav
+  /* ───────────────────────────────────────────────────
+     KEYBOARD NAV
+     ─────────────────────────────────────────────────── */
   document.addEventListener("keydown", (e) => {
     switch (e.key) {
       case "ArrowRight":
@@ -164,20 +195,43 @@
     }
   });
 
-  // Click nav
-  btnNext.addEventListener("click", next);
-  btnPrev.addEventListener("click", prev);
-  btnPlay.addEventListener("click", toggleAuto);
-  btnNotes.addEventListener("click", toggleNotes);
-  notesClose.addEventListener("click", toggleNotes);
+  /* ───────────────────────────────────────────────────
+     BUTTON NAV
+     ─────────────────────────────────────────────────── */
+  btnNext.addEventListener("click", (e) => { e.stopPropagation(); next(); });
+  btnPrev.addEventListener("click", (e) => { e.stopPropagation(); prev(); });
+  btnPlay.addEventListener("click", (e) => { e.stopPropagation(); toggleAuto(); });
+  btnNotes.addEventListener("click", (e) => { e.stopPropagation(); toggleNotes(); });
+  notesClose.addEventListener("click", (e) => { e.stopPropagation(); toggleNotes(); });
 
-  // Click anywhere on slide to advance (for easy recording)
-  document.getElementById("slides").addEventListener("click", (e) => {
+  slidesEl.addEventListener("click", (e) => {
     if (e.target.closest("#controls") || e.target.closest("#notes-panel")) return;
     next();
   });
 
-  // Init first slide
+  /* ───────────────────────────────────────────────────
+     TOUCH / SWIPE NAV (mobile support)
+     ─────────────────────────────────────────────────── */
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  document.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  document.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const dy = e.changedTouches[0].screenY - touchStartY;
+    if (Math.abs(dx) < 50 && Math.abs(dy) < 50) return;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      dx < 0 ? next() : prev();
+    }
+  }, { passive: true });
+
+  /* ───────────────────────────────────────────────────
+     INIT
+     ─────────────────────────────────────────────────── */
   slides[0].classList.add("active");
   updateUI();
   document.body.classList.add("show-controls");

@@ -14,8 +14,8 @@
   --red:       #e74c3c;
   --font:      'Segoe UI', Inter, system-ui, -apple-system, sans-serif;
   --mono:      'Cascadia Code', 'Fira Code', monospace;
-  --slide-w:   1920px;
-  --slide-h:   1080px;
+  --slide-w:   1920;
+  --slide-h:   1080;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -26,30 +26,42 @@
 html, body {
   width: 100%; height: 100%;
   overflow: hidden;
-  background: var(--bg-deep);
+  background: #000;
   color: var(--text);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
 }
 
 img { display: block; max-width: 100%; height: auto; }
 
 /* ═══════════════════════════════════════════════════════
-   16:9 VIEWPORT LOCK
+   FIXED 1920×1080 CANVAS WITH CSS-TRANSFORM SCALING
+   The #slides container is always exactly 1920×1080 and
+   is centered+scaled via JS to fit any viewport.
    ═══════════════════════════════════════════════════════ */
 #slides {
-  position: fixed; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  top: 50%; left: 50%;
+  transform-origin: center center;
+  background: var(--bg-deep);
+  overflow: hidden;
 }
 
 .slide {
-  position: absolute; inset: 0;
+  position: absolute;
+  top: 0; left: 0;
+  width: 1920px;
+  height: 1080px;
   display: flex; align-items: center; justify-content: center;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
   pointer-events: none;
   padding: 60px 80px;
+  overflow: hidden;
 }
 
 .slide.active {
@@ -87,7 +99,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 /* ═══════════════════════════════════════════════════════
-   CONTROLS OVERLAY
+   CONTROLS OVERLAY (always in viewport space, not canvas)
    ═══════════════════════════════════════════════════════ */
 #controls {
   position: fixed; bottom: 20px; right: 40px;
@@ -103,6 +115,7 @@ body.show-controls #controls { opacity: 1; }
   color: var(--text); padding: 8px 16px; border-radius: 6px;
   cursor: pointer; font-size: 14px; font-family: var(--font);
   transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
 #controls button:hover { background: rgba(255,255,255,0.15); }
 #controls button.active { background: var(--gold); color: #000; }
@@ -158,7 +171,7 @@ ul li::before {
 /* ═══════════════════════════════════════════════════════
    SLIDE CONTENT LAYOUTS
    ═══════════════════════════════════════════════════════ */
-.slide-content { width: 100%; max-width: 1600px; }
+.slide-content { width: 100%; max-width: 1760px; max-height: 960px; }
 .center-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
 .slide-note { display: none; }
 
@@ -187,14 +200,16 @@ ul li::before {
 .title-advisor { margin-top: 16px; font-size: 15px; color: var(--text-dim); }
 
 /* ─── Split Slide ─── */
-.split-slide { display: flex; gap: 60px; align-items: center; }
+.split-slide { display: flex; gap: 48px; align-items: center; }
 .split-image {
-  flex: 1; max-width: 50%;
+  flex: 0 0 45%; max-width: 45%;
   border-radius: 12px; overflow: hidden;
   background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
+  max-height: 800px;
+  display: flex; align-items: center; justify-content: center;
 }
-.split-image img { width: 100%; height: auto; object-fit: contain; }
-.split-text { flex: 1; }
+.split-image img { width: 100%; height: auto; max-height: 780px; object-fit: contain; }
+.split-text { flex: 1; min-width: 0; }
 
 /* ─── Ken Burns ─── */
 .kenburns img {
@@ -307,8 +322,9 @@ ul li::before {
 .trio-item {
   flex: 1; border-radius: 12px; overflow: hidden;
   background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
+  display: flex; flex-direction: column;
 }
-.trio-item img { width: 100%; aspect-ratio: 4/3; object-fit: contain; background: #e8e8f0; }
+.trio-item img { width: 100%; height: 340px; object-fit: contain; background: #e8e8f0; }
 .trio-item span {
   display: block; padding: 12px; font-size: 14px; color: var(--text-dim);
 }
@@ -316,13 +332,13 @@ ul li::before {
 /* ═══════════════════════════════════════════════════════
    DESIGN HIGHLIGHTS
    ═══════════════════════════════════════════════════════ */
-.design-highlights { display: flex; flex-direction: column; gap: 20px; }
+.design-highlights { display: flex; flex-direction: column; gap: 16px; }
 .highlight-block {
-  padding: 20px; border-radius: 10px;
+  padding: 18px; border-radius: 10px;
   background: var(--bg-card); border-left: 3px solid var(--gold);
 }
-.highlight-block h3 { font-size: 17px; margin-bottom: 6px; }
-.highlight-block p { font-size: 15px; color: var(--text-dim); line-height: 1.5; }
+.highlight-block h3 { font-size: 16px; margin-bottom: 4px; }
+.highlight-block p { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
 
 /* ═══════════════════════════════════════════════════════
    CFD GRID
@@ -332,7 +348,7 @@ ul li::before {
   flex: 1; border-radius: 10px; overflow: hidden;
   background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
 }
-.cfd-item img { width: 100%; aspect-ratio: 16/10; object-fit: contain; background: #2a2a3a; }
+.cfd-item img { width: 100%; height: 300px; object-fit: contain; background: #2a2a3a; }
 .cfd-item span { display: block; padding: 10px; font-size: 13px; color: var(--text-dim); text-align: center; }
 
 /* ═══════════════════════════════════════════════════════
@@ -363,16 +379,25 @@ ul li::before {
 .callout span:last-child { font-size: 14px; color: var(--text-dim); }
 
 /* ═══════════════════════════════════════════════════════
-   PROTOTYPE GRID
+   PROTOTYPE GRID — fixed: equal row heights, images fill
    ═══════════════════════════════════════════════════════ */
-.proto-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 20px; margin-top: 32px; }
+.proto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px; margin-top: 28px;
+  height: 700px;
+}
 .proto-item {
   border-radius: 12px; overflow: hidden;
   background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
+  display: flex; flex-direction: column;
 }
-.proto-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
-.proto-item.main-proto img { aspect-ratio: 3/4; }
-.proto-item span { display: block; padding: 10px 12px; font-size: 13px; color: var(--text-dim); }
+.proto-item img { width: 100%; flex: 1; object-fit: cover; min-height: 0; }
+.proto-item.main-proto {
+  grid-row: 1 / 3;
+}
+.proto-item span { padding: 8px 12px; font-size: 13px; color: var(--text-dim); flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════════════════
    METHOD GRID
@@ -391,16 +416,16 @@ ul li::before {
    RESULT HIGHLIGHTS
    ═══════════════════════════════════════════════════════ */
 .result-highlight {
-  padding: 20px; border-radius: 10px; margin-bottom: 16px;
+  padding: 16px 20px; border-radius: 10px; margin-bottom: 12px;
   background: var(--bg-card); border-left: 4px solid var(--green);
   text-align: left;
 }
 .result-highlight.pass { border-left-color: var(--green); }
-.rh-label { display: block; font-size: 14px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-.rh-value { display: block; font-size: 36px; font-weight: 800; color: #fff; margin: 4px 0; }
-.rh-target { display: block; font-size: 14px; color: var(--green); font-weight: 600; }
-.safety-note { font-size: 15px; color: var(--text-dim); margin-top: 16px; line-height: 1.6; }
-.chart-container { display: flex; align-items: center; justify-content: center; padding: 16px; }
+.rh-label { display: block; font-size: 13px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+.rh-value { display: block; font-size: 32px; font-weight: 800; color: #fff; margin: 2px 0; }
+.rh-target { display: block; font-size: 13px; color: var(--green); font-weight: 600; }
+.safety-note { font-size: 14px; color: var(--text-dim); margin-top: 12px; line-height: 1.5; }
+.chart-container { display: flex; align-items: center; justify-content: center; padding: 12px; }
 
 /* ═══════════════════════════════════════════════════════
    ACOUSTIC COMPARISON
@@ -509,7 +534,7 @@ ul li::before {
 }
 
 /* ═══════════════════════════════════════════════════════
-   ENTRANCE ANIMATIONS (applied per-slide by JS)
+   ENTRANCE ANIMATIONS
    ═══════════════════════════════════════════════════════ */
 .slide.active .stat-card,
 .slide.active .goal-card,
