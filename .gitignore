@@ -1,0 +1,16 @@
+# Source documents (large, not needed for the hosted site)
+Context/
+Media/
+*.docx
+*.pdf
+*.mkv
+*.mov
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPU — Senior Design Showcase 2026</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PROGRESS BAR
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="progress-bar"><div id="progress-fill"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION INDICATOR
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="section-label"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE CONTAINER
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="slides">
+
+  <!-- ─── ACT 1  INTRODUCTION ─── -->
+
+  <!-- SLIDE 1 — Title -->
+  <section class="slide" data-duration="15" data-section="Introduction">
+    <div class="slide-content title-slide">
+      <div class="ucf-badge">University of Central Florida &bull; College of Engineering and Computer Science</div>
+      <h1 class="hero-title">External Performance Unit</h1>
+      <p class="hero-subtitle">A Modular Cooling Enhancement Kit for the Arctic Liquid Freezer III</p>
+      <div class="title-meta">
+        <span>Senior Design Showcase &bull; Spring 2026</span>
+      </div>
+      <div class="title-team-strip">
+        Dawson Sallee &nbsp;&bull;&nbsp; Van Nguyen &nbsp;&bull;&nbsp; David Loaiza &nbsp;&bull;&nbsp; Joel Lopez
+      </div>
+      <div class="title-advisor">Faculty Advisor: Darshan Yadav &nbsp;|&nbsp; Mechanical &amp; Aerospace Engineering</div>
+    </div>
+    <div class="slide-note">Welcome to our Senior Design presentation. We are Team 2 from UCF's College of Engineering, and today we're presenting the External Performance Unit — a modular cooling upgrade kit.</div>
+  </section>
+
+  <!-- SLIDE 2 — Team Introduction -->
+  <section class="slide" data-duration="30" data-section="Introduction">
+    <div class="slide-content split-slide">
+      <div class="split-image kenburns">
+        <img src="assets/media/people.jpg" alt="Team Photo">
+      </div>
+      <div class="split-text">
+        <h2>Meet the Team</h2>
+        <div class="team-grid">
+          <div class="team-card"><strong>Dawson Sallee</strong><span>Mechanical Engineering</span><span class="role">Systems Lead &amp; Controls</span></div>
+          <div class="team-card"><strong>Van Nguyen</strong><span>Mechanical Engineering</span><span class="role">CFD &amp; Thermal Analysis</span></div>
+          <div class="team-card"><strong>David Loaiza</strong><span>Mechanical Engineering</span><span class="role">Mechanical Design &amp; CAD</span></div>
+          <div class="team-card"><strong>Joel Lopez</strong><span>Mechanical Engineering</span><span class="role">Electrical &amp; Manufacturing</span></div>
+        </div>
+        <p class="advisor-note">Faculty Advisor: <strong>Dr. Darshan Yadav</strong></p>
+      </div>
+    </div>
+    <div class="slide-note">We are four mechanical engineering seniors. Dawson led systems integration and controls. Van handled CFD and thermal analysis. David owned the mechanical design and CAD. Joel managed electrical systems and manufacturing. Our faculty advisor is Dr. Darshan Yadav.</div>
+  </section>
+
+  <!-- SLIDE 3 — The Problem -->
+  <section class="slide" data-duration="45" data-section="Introduction">
+    <div class="slide-content center-content">
+      <h2>The Problem</h2>
+      <p class="lead">Modern CPUs generate more heat than ever. When cooling fails to keep up, processors <em>throttle</em> — slowing themselves down to survive.</p>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-number" data-count="265">0</div>
+          <div class="stat-unit">Watts</div>
+          <div class="stat-label">Baseline cooler thermal limit</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="stat-number">$250<span class="stat-plus">+</span></div>
+          <div class="stat-label">Cost to upgrade to a premium cooler</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">38</div>
+          <div class="stat-unit">dBA</div>
+          <div class="stat-label">Loud stock noise at max load</div>
+        </div>
+      </div>
+      <p class="problem-gap">There is <strong>no affordable upgrade path</strong> — users must discard functional hardware and spend hundreds on a replacement.</p>
+    </div>
+    <div class="slide-note">As CPUs have become more powerful, thermal management is the single biggest obstacle to performance. When a CPU gets too hot, it protectively slows itself down — a process called thermal throttling. Mid-range coolers like the Arctic Liquid Freezer III top out at about 265 watts. If users need more, the only option is to throw away their existing cooler and spend over 250 dollars on a premium replacement. There is no affordable middle ground. That's the gap we set out to fill.</div>
+  </section>
+
+  <!-- ─── ACT 2  GOALS & APPROACH ─── -->
+
+  <!-- SLIDE 4 — Why This Topic -->
+  <section class="slide" data-duration="30" data-section="Goals &amp; Approach">
+    <div class="slide-content center-content">
+      <h2>Why This Topic?</h2>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <div class="reason-icon">&#9889;</div>
+          <h3>Performance Demand</h3>
+          <p>AI training, 3D rendering, and gaming push CPUs to their thermal limits daily</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-icon">&#9851;</div>
+          <h3>Electronic Waste</h3>
+          <p>Functional hardware is discarded every few years, creating massive e-waste</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-icon">&#128176;</div>
+          <h3>Cost Barrier</h3>
+          <p>Premium cooling solutions cost $250+ — inaccessible to students and budget users</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">We chose this topic because the demand for high-performance computing is exploding — AI training, simulation, rendering, and gaming all generate extreme heat loads. At the same time, the industry encourages a wasteful cycle of replacing perfectly functional hardware. We wanted to prove there's a smarter, more sustainable way to get enthusiast-grade performance.</div>
+  </section>
+
+  <!-- SLIDE 5 — Project Goals -->
+  <section class="slide" data-duration="30" data-section="Goals &amp; Approach">
+    <div class="slide-content center-content">
+      <h2>Project Goals</h2>
+      <div class="goal-grid">
+        <div class="goal-card">
+          <div class="goal-value" data-count="320">0</div>
+          <div class="goal-unit">Watts TDP</div>
+          <div class="goal-desc">20% thermal improvement</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-value">&lt;30</div>
+          <div class="goal-unit">dBA</div>
+          <div class="goal-desc">Quieter than stock at max load</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-value">&lt;$65</div>
+          <div class="goal-unit">BOM Cost</div>
+          <div class="goal-desc">Fraction of a premium cooler</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-value">&lt;20</div>
+          <div class="goal-unit">Min Install</div>
+          <div class="goal-desc">Simple, no special tools</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">We defined four critical performance targets. First, increase thermal dissipation capacity to 320 watts — a 20 percent improvement. Second, reduce noise to under 30 decibels at max load. Third, keep the entire modification kit under 65 dollars. And fourth, make installation possible in under 20 minutes with just a Phillips screwdriver.</div>
+  </section>
+
+  <!-- SLIDE 6 — Technology Research -->
+  <section class="slide" data-duration="45" data-section="Goals &amp; Approach">
+    <div class="slide-content center-content">
+      <h2>Technology Assessment</h2>
+      <p class="lead">We evaluated a wide spectrum of cooling and control technologies</p>
+      <div class="tech-columns">
+        <div class="tech-col">
+          <h3>Cooling Methods</h3>
+          <ul>
+            <li>Thermal Interface Materials (TIMs)</li>
+            <li>Liquid Loop Hydraulics</li>
+            <li>Thermoelectric Coolers (TECs)</li>
+            <li>Vapor Compression Refrigeration</li>
+            <li>Thermosyphons &amp; Heat Pipes</li>
+            <li>Jet Impingement Cooling</li>
+          </ul>
+        </div>
+        <div class="tech-col">
+          <h3>Control &amp; DAQ</h3>
+          <ul>
+            <li>Arduino MCU vs. Raspberry Pi SBC</li>
+            <li>Fuzzy Logic Controllers</li>
+            <li>Machine Learning Models</li>
+            <li>HWiNFO64 Telemetry API</li>
+            <li>T-Type Thermocouples</li>
+            <li>Intel 4-Wire PWM Standard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">Before committing to a design, we conducted extensive technology research. On the cooling side, we evaluated everything from thermal interface materials and liquid loops to exotic options like thermoelectric coolers, vapor compression refrigeration, thermosyphons, and jet impingement cooling. On the controls side, we compared microcontrollers versus single-board computers, and evaluated fuzzy logic, machine learning, and reinforcement learning control paradigms.</div>
+  </section>
+
+  <!-- SLIDE 7 — Concept Selection -->
+  <section class="slide" data-duration="30" data-section="Goals &amp; Approach">
+    <div class="slide-content center-content">
+      <h2>Concept Selection</h2>
+      <p class="lead">Three finalist concepts evaluated via Weighted Pugh Matrix</p>
+      <div class="concept-row">
+        <div class="concept-card eliminated">
+          <h3>Hybrid Internal Mod</h3>
+          <p>Internal push-pull with decoupled mounts</p>
+          <span class="concept-verdict">Risk: VRM/RAM interference</span>
+        </div>
+        <div class="concept-card winner">
+          <h3>External Performance Unit</h3>
+          <p>External push-pull module with silicone gasket</p>
+          <span class="concept-verdict">Selected: Best trade-off balance</span>
+        </div>
+        <div class="concept-card eliminated">
+          <h3>Chained Radiator Loop</h3>
+          <p>Secondary radiator spliced into liquid loop</p>
+          <span class="concept-verdict">Failed: BOM &gt; $175</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">Using a structured morphological analysis and weighted Pugh matrix, we narrowed down to three finalist concepts. The Hybrid Internal Mod risked colliding with motherboard components. The Chained Radiator Loop exceeded our budget at over 175 dollars. The External Performance Unit — or EPU — provided the best mathematical balance of thermal performance, acoustics, cost, and compatibility. It was selected for full development.</div>
+  </section>
+
+  <!-- SLIDE 8 — EPU Concept -->
+  <section class="slide" data-duration="30" data-section="Goals &amp; Approach">
+    <div class="slide-content split-slide">
+      <div class="split-image">
+        <img src="assets/extracted/m6/image17.png" alt="EPU Cross Section">
+      </div>
+      <div class="split-text">
+        <h2>The EPU Concept</h2>
+        <p>A push-pull fan configuration that <strong>doubles the static pressure</strong> capability of the cooling system.</p>
+        <div class="key-stats">
+          <div class="key-stat"><span class="ks-val">+31.3%</span><span class="ks-label">Volumetric airflow increase</span></div>
+          <div class="key-stat"><span class="ks-val">347.9W</span><span class="ks-label">Theoretical thermal ceiling</span></div>
+          <div class="key-stat"><span class="ks-val">-92%</span><span class="ks-label">Vibration transmissibility</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">The EPU works by adding a second row of fans on the exterior of the PC case, creating a push-pull configuration through the radiator. This effectively doubles the system's static pressure capability, allowing air to overcome the high aerodynamic impedance of the 38-millimeter thick radiator core. Our analytical P-Q curve modeling predicted a 31.3 percent increase in volumetric airflow, lifting the theoretical thermal ceiling to nearly 348 watts. The custom silicone gasket reduces vibration transmission by 92 percent.</div>
+  </section>
+
+  <!-- ─── ACT 3  DESIGN DEEP-DIVE ─── -->
+
+  <!-- SLIDE 9 — Mechanical Design -->
+  <section class="slide" data-duration="30" data-section="Design">
+    <div class="slide-content split-slide">
+      <div class="split-image">
+        <img src="assets/media/imagedfg.png" alt="EPU CAD on PC Case">
+      </div>
+      <div class="split-text">
+        <h2>Mechanical Design</h2>
+        <ul class="feature-list">
+          <li><strong>3D-Printed PETG Housing</strong> — High temperature resistance, durable</li>
+          <li><strong>3x Arctic P12 Pro Fans</strong> — High-static-pressure, 3000 RPM</li>
+          <li><strong>Magnetic Lid</strong> — Tool-less removal for maintenance</li>
+          <li><strong>#6-32 UNC Mounting</strong> — Universal 120mm fan standard</li>
+          <li><strong>360 x 120 x 65 mm</strong> — Fits any case supporting the stock cooler</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-note">The EPU housing is 3D-printed from PETG, chosen for its high temperature resistance and dimensional stability. It houses three Arctic P12 Pro 120-millimeter fans, which are optimized for high static pressure. The housing mounts to the PC case using standard number 6-32 machine screws. A magnetic lid provides tool-less access for maintenance and dust filter replacement. The entire assembly fits within the same footprint as the original cooler.</div>
+  </section>
+
+  <!-- SLIDE 10 — CAD Detail Views -->
+  <section class="slide" data-duration="25" data-section="Design">
+    <div class="slide-content image-trio">
+      <h2>EPU Housing Design</h2>
+      <div class="trio-grid">
+        <div class="trio-item">
+          <img src="assets/extracted/m6/image16.png" alt="Full Assembly">
+          <span>Full Assembly with PC Case</span>
+        </div>
+        <div class="trio-item">
+          <img src="assets/extracted/m6/image20.png" alt="Housing Isometric">
+          <span>Housing Base — Isometric</span>
+        </div>
+        <div class="trio-item">
+          <img src="assets/extracted/m6/image18.png" alt="Arctic Cooler CAD">
+          <span>Arctic Liquid Freezer III</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">Here you can see the complete CAD assembly. On the left, the full system integration with the EPU mounted on top of a Lian Li LANCOOL 207 case. In the center, the isolated housing base showing the PETG frame and internal rib structure. On the right, the baseline Arctic Liquid Freezer III cooler that the EPU is designed to enhance.</div>
+  </section>
+
+  <!-- SLIDE 11 — Silicone Gasket + Electrical -->
+  <section class="slide" data-duration="30" data-section="Design">
+    <div class="slide-content split-slide">
+      <div class="split-image">
+        <img src="assets/extracted/m6/image26.png" alt="Wiring Diagram">
+      </div>
+      <div class="split-text">
+        <h2>Electrical &amp; Acoustic Design</h2>
+        <div class="design-highlights">
+          <div class="highlight-block">
+            <h3>SATA Direct-Drive Topology</h3>
+            <p>Bypasses motherboard fan headers entirely. Draws power safely from PSU via fused SATA connection — 328% safety margin over peak current draw.</p>
+          </div>
+          <div class="highlight-block">
+            <h3>Arduino Nano V3 Controller</h3>
+            <p>Generates hardware-accurate 25 kHz PWM signal. Interrupt-driven tachometer reading with automatic stall detection and recovery.</p>
+          </div>
+          <div class="highlight-block">
+            <h3>RTV Silicone Gasket</h3>
+            <p>Custom-molded 40A durometer gasket with accordion bellows. Reduces vibration force transmission by 92.2%.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">The electrical design uses what we call a SATA Direct-Drive topology. Instead of drawing power from the motherboard's fan headers — which are limited to just 1 amp — we draw power directly from the PC's power supply through a fused SATA connection. This provides a 328 percent safety margin. An Arduino Nano generates a hardware-accurate 25 kilohertz PWM signal and monitors fan RPM using interrupts. To address acoustics, we engineered a custom RTV silicone compliance gasket that reduces vibration force transmission to the PC chassis by over 92 percent.</div>
+  </section>
+
+  <!-- SLIDE 12 — CFD Simulation -->
+  <section class="slide" data-duration="40" data-section="Design">
+    <div class="slide-content center-content">
+      <h2>CFD Simulation</h2>
+      <p class="lead">ANSYS Fluent analysis of the radiator's thermal and aerodynamic performance</p>
+      <div class="cfd-grid">
+        <div class="cfd-item">
+          <img src="assets/extracted/m6/image3.png" alt="Radiator Section CAD">
+          <span>Radiator Section Model</span>
+        </div>
+        <div class="cfd-item">
+          <img src="assets/extracted/m6/image4.png" alt="ANSYS Discovery">
+          <span>ANSYS Discovery — Flow Regions</span>
+        </div>
+        <div class="cfd-item">
+          <img src="assets/extracted/m6/image5.png" alt="Mesh">
+          <span>Volume Mesh Generation</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">To validate our design analytically, we performed computational fluid dynamics simulations using ANSYS Fluent. We modeled a representative section of the radiator with accurate fin density and pipe dimensions. After refining the geometry in ANSYS Discovery and defining fluid regions, we generated a high-quality volume mesh in ANSYS Mechanical. The simulations ran four scenarios comparing single-fan versus push-pull configurations at both low and high RPM.</div>
+  </section>
+
+  <!-- SLIDE 13 — CFD Results -->
+  <section class="slide" data-duration="25" data-section="Design">
+    <div class="slide-content center-content">
+      <h2>CFD Results</h2>
+      <div class="results-table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr><th>Configuration</th><th>Air Velocity</th><th>Heat Transfer Rate</th><th>Delta-T Water</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Single Fan @ 900 RPM</td><td>1.0 m/s</td><td>155 W</td><td>11.16 &deg;C</td></tr>
+            <tr><td>Single Fan @ 3000 RPM</td><td>2.0 m/s</td><td>177.9 W</td><td>12.04 &deg;C</td></tr>
+            <tr class="highlight-row"><td>Push-Pull @ 900 RPM</td><td>1.25 m/s</td><td>162.5 W</td><td>11.34 &deg;C</td></tr>
+            <tr class="highlight-row"><td>Push-Pull @ 3000 RPM</td><td>2.48 m/s</td><td>186 W</td><td>12.36 &deg;C</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cfd-callouts">
+        <div class="callout"><span class="callout-val">+4.5%</span><span>Heat rejection rate increase</span></div>
+        <div class="callout"><span class="callout-val">+14.5%</span><span>Air-side heat transfer coefficient</span></div>
+        <div class="callout"><span class="callout-val">-30%</span><span>Required RPM for equal cooling</span></div>
+      </div>
+    </div>
+    <div class="slide-note">The CFD results confirmed our analytical predictions. At maximum RPM, the push-pull configuration increased the heat rejection rate by 4.5 percent and the air-side heat transfer coefficient by 14.5 percent. But the most significant advantage is acoustic: by sharing the pressure load between two fan rows, we can achieve the same cooling at 30 percent lower RPM — which translates directly into a 9.4 percent noise reduction.</div>
+  </section>
+
+  <!-- ─── ACT 4  BUILD & TEST ─── -->
+
+  <!-- SLIDE 14 — Prototype Build -->
+  <section class="slide" data-duration="30" data-section="Build &amp; Test">
+    <div class="slide-content center-content">
+      <h2>Prototype Build</h2>
+      <div class="proto-grid">
+        <div class="proto-item main-proto">
+          <img src="assets/media/IMG_4940.jpg" alt="EPU Prototype Mounted">
+          <span>EPU Prototype — Installed on Test Rig</span>
+        </div>
+        <div class="proto-item">
+          <img src="assets/media/IMG_4927.jpg" alt="Test PC Interior">
+          <span>Test PC Interior — Arctic LFIII Installed</span>
+        </div>
+        <div class="proto-item">
+          <img src="assets/media/IMG_4951.jpg" alt="Electronics">
+          <span>Control Electronics</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">Here is our physical prototype. The main photo shows the completed EPU installed on our test rig — a Lian Li LANCOOL 207 case with an Intel test CPU. You can see the three Arctic P12 Pro fans mounted in the 3D-printed PETG housing, sitting on top of the case over the radiator. The interior view shows the stock Arctic Liquid Freezer III with its pump head and tubing. The electronics include the Arduino Nano control board with LED indicators and the potentiometer for manual speed control.</div>
+  </section>
+
+  <!-- SLIDE 15 — Test Methodology -->
+  <section class="slide" data-duration="30" data-section="Build &amp; Test">
+    <div class="slide-content center-content">
+      <h2>Test Methodology</h2>
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-icon">&#128293;</div>
+          <h3>Thermal Load</h3>
+          <p>Prime95 "Small FFTs" — industry-standard worst-case CPU stress test</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">&#128200;</div>
+          <h3>Data Acquisition</h3>
+          <p>HWiNFO64 telemetry logging at 2 Hz — CPU temp, power, fan RPM</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">&#9201;</div>
+          <h3>Duration</h3>
+          <p>45-minute continuous cycles to ensure true thermal equilibrium</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">&#128266;</div>
+          <h3>Acoustic</h3>
+          <p>Calibrated SPL meter at 1m distance, A-weighted (dBA)</p>
+        </div>
+      </div>
+      <p class="method-note">All metrics reported as Delta-T (&#916;T = T<sub>component</sub> - T<sub>ambient</sub>) for normalized, repeatable results</p>
+    </div>
+    <div class="slide-note">Our testing methodology followed industry-standard practices. We used Prime95 Small FFTs to generate a consistent worst-case thermal load. HWiNFO64 logged all telemetry at 2 hertz. Each test ran for 45 continuous minutes to ensure the liquid cooling loop reached true thermal equilibrium. Acoustic measurements used a calibrated SPL meter at one meter distance with A-weighting. All thermal results are reported as Delta-T to eliminate ambient temperature as a variable.</div>
+  </section>
+
+  <!-- SLIDE 16 — Thermal Results -->
+  <section class="slide" data-duration="30" data-section="Build &amp; Test">
+    <div class="slide-content split-slide">
+      <div class="split-image chart-container">
+        <img src="assets/extracted/m6/image27.png" alt="Thermal Equilibrium Chart">
+      </div>
+      <div class="split-text">
+        <h2>Thermal Results</h2>
+        <div class="result-highlight pass">
+          <span class="rh-label">Maximum TDP Sustained</span>
+          <span class="rh-value">336.3 W</span>
+          <span class="rh-target">Target: 320 W — PASS</span>
+        </div>
+        <div class="result-highlight pass">
+          <span class="rh-label">Peak CPU Temperature</span>
+          <span class="rh-value">82.6 &deg;C</span>
+          <span class="rh-target">Throttle limit: 100 &deg;C — Safe margin</span>
+        </div>
+        <div class="result-highlight pass">
+          <span class="rh-label">Coefficient of Performance</span>
+          <span class="rh-value">25.1</span>
+          <span class="rh-target">Target: &ge; 19.0 — PASS</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">The thermal results exceeded every target. The system maintained a continuous 336.3 watt heat load — well above our 320 watt goal. The CPU temperature plateaued at 82.6 degrees Celsius, which is 17 degrees below the throttling limit. This flat plateau confirms true thermal equilibrium was achieved. The calculated Coefficient of Performance was 25.1, demonstrating exceptional cooling efficiency for the electrical power consumed.</div>
+  </section>
+
+  <!-- SLIDE 17 — Power & Safety -->
+  <section class="slide" data-duration="25" data-section="Build &amp; Test">
+    <div class="slide-content split-slide">
+      <div class="split-image">
+        <img src="assets/extracted/m6/image29.png" alt="RPM and Stall Detection">
+      </div>
+      <div class="split-text">
+        <h2>Power &amp; Safety</h2>
+        <div class="result-highlight pass">
+          <span class="rh-label">Max EPU Power Draw</span>
+          <span class="rh-value">13.39 W</span>
+          <span class="rh-target">Limit: 20 W — PASS</span>
+        </div>
+        <div class="result-highlight pass">
+          <span class="rh-label">EMI Stall Detection</span>
+          <span class="rh-value">Instant Recovery</span>
+          <span class="rh-target">Detected &amp; recovered in &lt; 2s — PASS</span>
+        </div>
+        <p class="safety-note">The Arduino's interrupt-driven watchdog timer detected simulated stall faults at the 9-minute and 26-minute marks and immediately restored the PWM signal.</p>
+      </div>
+    </div>
+    <div class="slide-note">The power consumption peaked at just 13.39 watts — well below the 20-watt safety limit for the SATA topology. We also validated the firmware's stall detection failsafe. During testing, we introduced simulated stall faults at the 9-minute and 26-minute marks. The Arduino's watchdog timer instantly detected the absence of tachometer pulses and executed the kick-start routine, successfully preventing a thermal runaway event.</div>
+  </section>
+
+  <!-- SLIDE 18 — Acoustic Results -->
+  <section class="slide" data-duration="30" data-section="Build &amp; Test">
+    <div class="slide-content split-slide">
+      <div class="split-image">
+        <img src="assets/extracted/m6/image30.png" alt="Acoustic Performance Bar Chart">
+      </div>
+      <div class="split-text">
+        <h2>Acoustic Results</h2>
+        <div class="acoustic-comparison">
+          <div class="ac-row baseline">
+            <span class="ac-label">Stock @ 265W</span>
+            <div class="ac-bar-wrap"><div class="ac-bar" style="width:100%">38.1 dBA</div></div>
+            <span class="ac-verdict fail">FAIL</span>
+          </div>
+          <div class="ac-row">
+            <span class="ac-label">EPU @ 265W</span>
+            <div class="ac-bar-wrap"><div class="ac-bar epu" style="width:76.9%">29.3 dBA</div></div>
+            <span class="ac-verdict pass-badge">PASS</span>
+          </div>
+          <div class="ac-row">
+            <span class="ac-label">EPU @ 320W</span>
+            <div class="ac-bar-wrap"><div class="ac-bar epu" style="width:82.7%">31.5 dBA</div></div>
+            <span class="ac-verdict pass-badge">PASS</span>
+          </div>
+          <div class="ac-row">
+            <span class="ac-label">EPU @ Idle</span>
+            <div class="ac-bar-wrap"><div class="ac-bar epu" style="width:57.9%">22.1 dBA</div></div>
+            <span class="ac-verdict pass-badge">PASS</span>
+          </div>
+        </div>
+        <p class="acoustic-note"><strong>8.8 dBA reduction</strong> at equivalent load — roughly 50% decrease in perceived loudness</p>
+      </div>
+    </div>
+    <div class="slide-note">The acoustic results were one of our proudest achievements. The stock cooler produced 38.1 decibels at 265 watts — exceeding our 32-decibel target. With the EPU engaged, the same 265-watt load was handled at just 29.3 decibels. That's an 8.8 decibel reduction, which represents roughly a 50 percent decrease in perceived loudness. Even at the maximum 320-watt load, we measured 31.5 decibels — still under our target. The silicone gasket and acoustic foam successfully eliminated chassis resonance and turbulence noise.</div>
+  </section>
+
+  <!-- SLIDE 19 — Results Summary -->
+  <section class="slide" data-duration="25" data-section="Build &amp; Test">
+    <div class="slide-content center-content">
+      <h2>Results Summary</h2>
+      <div class="summary-table-wrap">
+        <table class="summary-table">
+          <thead>
+            <tr><th>Metric</th><th>Target</th><th>Result</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Thermal Capacity (TDP)</td><td>&ge; 320 W</td><td>336.3 W</td><td class="pass-cell">PASS</td></tr>
+            <tr><td>Coefficient of Performance</td><td>&ge; 19.0</td><td>25.1</td><td class="pass-cell">PASS</td></tr>
+            <tr><td>Acoustic Output @ Max</td><td>&le; 32 dBA</td><td>31.5 dBA</td><td class="pass-cell">PASS</td></tr>
+            <tr><td>Max Power Draw</td><td>&le; 20 W</td><td>13.39 W</td><td class="pass-cell">PASS</td></tr>
+            <tr><td>Exhaust Air Delta-T</td><td>&le; 15 &deg;C</td><td>3.16 &deg;C</td><td class="pass-cell">PASS</td></tr>
+            <tr><td>Stall Detection Failsafe</td><td>&le; 2s</td><td>Instant</td><td class="pass-cell">PASS</td></tr>
+            <tr><td>Bill of Materials</td><td>&le; $65</td><td>$64.05</td><td class="pass-cell">PASS</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="slide-note">Here is the complete results summary. Every single critical performance parameter was met or exceeded. We achieved 336.3 watts thermal capacity, a coefficient of performance of 25.1, 31.5 decibels at maximum load, a power draw of just 13.39 watts, exhaust delta-T of only 3.16 degrees, instant stall detection, and a total bill of materials cost of 64 dollars and 5 cents. The EPU successfully transforms a mid-range cooler into an enthusiast-grade system.</div>
+  </section>
+
+  <!-- ─── ACT 5  IMPACT & CONCLUSION ─── -->
+
+  <!-- SLIDE 20 — Feedback Integration -->
+  <section class="slide" data-duration="20" data-section="Impact &amp; Conclusion">
+    <div class="slide-content center-content">
+      <h2>Feedback Integration</h2>
+      <p class="lead">How advisor and peer feedback shaped our final design</p>
+      <div class="feedback-grid">
+        <div class="feedback-card">
+          <h3>M3 &rarr; M5 Feedback</h3>
+          <p>Refined CFD boundary conditions based on advisor input; added exponential scaling law for accurate full-radiator temperature predictions.</p>
+        </div>
+        <div class="feedback-card">
+          <h3>M5 &rarr; M6 Feedback</h3>
+          <p>Extended test duration from 30 to 45 minutes per advisor recommendation to ensure true thermal equilibrium in the liquid loop.</p>
+        </div>
+        <div class="feedback-card">
+          <h3>Safety Enhancements</h3>
+          <p>Added 2A inline fuse and EMI stall detection failsafe based on FMEA risk analysis of 50+ potential failure modes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">Throughout the project, we actively incorporated feedback from our advisor and peers. After Milestone 3, we refined our CFD boundary conditions and added exponential scaling laws for more accurate predictions. After Milestone 5, our advisor recommended extending test durations from 30 to 45 minutes to ensure the liquid loop truly reached equilibrium. Our comprehensive FMEA analysis of over 50 failure modes led to key safety additions including the inline fuse and the stall detection failsafe.</div>
+  </section>
+
+  <!-- SLIDE 21 — Broader Impacts -->
+  <section class="slide" data-duration="30" data-section="Impact &amp; Conclusion">
+    <div class="slide-content center-content">
+      <h2>Broader Impacts</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-icon">&#128178;</div>
+          <h3>Economic Impact</h3>
+          <p>Enthusiast-grade cooling for <strong>$65 vs. $250+</strong>. Makes high-performance computing accessible to students, professionals, and budget users worldwide.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">&#127758;</div>
+          <h3>Environmental Impact</h3>
+          <p>The "upcycling" philosophy <strong>extends hardware life</strong> and reduces electronic waste. PETG housing and RTV silicone are durable for years of use.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">&#128736;</div>
+          <h3>Accessible Manufacturing</h3>
+          <p>FDM 3D printing and silicone casting enable <strong>localized, low-cost production</strong> without complex global supply chains.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">The EPU has significant broader impacts. Economically, it provides enthusiast-grade performance for 65 dollars instead of 250 — democratizing high-performance computing for students and budget users. Environmentally, our upcycling approach extends the life of existing hardware, keeping functional radiators and pumps out of landfills. And from a manufacturing perspective, our use of 3D printing and silicone casting enables localized production without relying on expensive industrial equipment or complex supply chains.</div>
+  </section>
+
+  <!-- SLIDE 22 — Conclusions -->
+  <section class="slide" data-duration="20" data-section="Impact &amp; Conclusion">
+    <div class="slide-content center-content conclusion-slide">
+      <h2>Conclusions</h2>
+      <blockquote class="conclusion-quote">
+        Mid-range cooling hardware <strong>can</strong> be upgraded to enthusiast-grade performance through a cost-effective, modular add-on — at <em>one-quarter</em> the cost of a premium replacement.
+      </blockquote>
+      <div class="conclusion-stats">
+        <div class="cs"><span class="cs-val">336 W</span><span>Thermal Capacity</span></div>
+        <div class="cs"><span class="cs-val">31.5 dBA</span><span>Acoustic Output</span></div>
+        <div class="cs"><span class="cs-val">$64</span><span>Total Cost</span></div>
+        <div class="cs"><span class="cs-val">7/7</span><span>Metrics Passed</span></div>
+      </div>
+    </div>
+    <div class="slide-note">In conclusion, our project proved that mid-range cooling hardware CAN be upgraded to enthusiast-grade performance through a cost-effective, modular add-on. The EPU achieved 336 watts of thermal dissipation, 31.5 decibels of acoustic output, a total cost of 64 dollars, and passed all seven critical performance metrics. This validates the viability of the upcycling philosophy for PC hardware.</div>
+  </section>
+
+  <!-- SLIDE 23 — Future Work -->
+  <section class="slide" data-duration="15" data-section="Impact &amp; Conclusion">
+    <div class="slide-content center-content">
+      <h2>Future Work</h2>
+      <div class="future-grid">
+        <div class="future-item">
+          <h3>RPM Sync Offset</h3>
+          <p>Implement firmware-based push/pull RPM detuning to eliminate harmonic beat frequencies</p>
+        </div>
+        <div class="future-item">
+          <h3>Accelerated Life Testing</h3>
+          <p>Certify 25,000-hour MTBF target through extended thermal cycling of PETG and silicone</p>
+        </div>
+        <div class="future-item">
+          <h3>Production Scaling</h3>
+          <p>Transition from FDM 3D printing to injection molding for high-volume manufacturing</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-note">For future work, we recommend three key areas. First, implementing an RPM Sync Offset in the firmware to eliminate the subtle harmonic beat frequencies observed during testing. Second, conducting accelerated life testing to certify the 25,000-hour MTBF target for the PETG and silicone components. And third, transitioning the housing from FDM 3D printing to injection molding for commercial-scale production.</div>
+  </section>
+
+  <!-- SLIDE 24 — Thank You -->
+  <section class="slide" data-duration="15" data-section="Impact &amp; Conclusion">
+    <div class="slide-content title-slide thankyou-slide">
+      <div class="ucf-badge">University of Central Florida &bull; College of Engineering and Computer Science</div>
+      <h1 class="hero-title">Thank You</h1>
+      <p class="hero-subtitle">External Performance Unit — Senior Design Spring 2026</p>
+      <div class="title-team-strip">
+        Dawson Sallee &nbsp;&bull;&nbsp; Van Nguyen &nbsp;&bull;&nbsp; David Loaiza &nbsp;&bull;&nbsp; Joel Lopez
+      </div>
+      <div class="title-advisor">Faculty Advisor: Darshan Yadav</div>
+      <div class="thankyou-team-photo">
+        <img src="assets/media/people.jpg" alt="Team Photo" class="thankyou-img">
+      </div>
+    </div>
+    <div class="slide-note">Thank you for watching our presentation. We're proud of what our team accomplished this year. If you have any questions, we'd be happy to discuss our project in more detail.</div>
+  </section>
+
+</div><!-- end #slides -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SPEAKER NOTES PANEL
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="notes-panel">
+  <div id="notes-header">
+    <span>Speaker Notes</span>
+    <button id="notes-close">&times;</button>
+  </div>
+  <div id="notes-content"></div>
+  <div id="notes-timer">
+    <span id="timer-current">0:00</span> / <span id="timer-total">8:30</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTROLS OVERLAY
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="controls">
+  <button id="btn-prev" title="Previous (Left Arrow)">&larr;</button>
+  <span id="slide-counter">1 / 24</span>
+  <button id="btn-next" title="Next (Right Arrow)">&rarr;</button>
+  <button id="btn-play" title="Auto-advance (Space)">&#9654; Auto</button>
+  <button id="btn-notes" title="Toggle Notes (N)">Notes</button>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/charts.js"></script>
+</body>
+</html>
