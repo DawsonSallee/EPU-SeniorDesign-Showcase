@@ -245,13 +245,21 @@ ul li::before {
   object-fit: contain;
   display: block;
 }
-.elec-right-stack {
+/* Center the text + photo block vertically vs. tall schematic */
+.elec-right-wrap {
   flex: 1;
   min-width: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.elec-right-stack {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
   flex-direction: column;
   gap: 12px;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .elec-text-block h2 {
   margin-bottom: 12px;
@@ -503,51 +511,61 @@ ul li::before {
   text-align: center; line-height: 1.35;
 }
 
-/* Slide 14 — symmetric 2×2: two photos + two halves of same desktop screenshot */
-.proto-grid-four {
+/* Slide 14 — one row × 4 columns; screenshot = two <img> crops (200% width + offset) */
+.proto-grid-four-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
   margin-top: 18px;
   width: 100%;
-  max-width: 1680px;
-  height: 560px;
+  max-width: 1760px;
+  height: 460px;
 }
-.proto-grid-four .proto-item {
-  border-radius: 12px;
+.proto-grid-four-row .proto-cell {
+  border-radius: 10px;
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid rgba(255,255,255,0.06);
   display: flex;
   flex-direction: column;
+  min-width: 0;
   min-height: 0;
 }
-.proto-grid-four .proto-item > img {
+.proto-grid-four-row .proto-cell > img {
   flex: 1;
   min-height: 0;
   width: 100%;
   object-fit: cover;
 }
-.proto-item-split .proto-screen-half {
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-  background-color: #0a0a14;
-  background-repeat: no-repeat;
-  background-size: 200% auto;
-  background-position: left center;
-}
-.proto-item-split .proto-screen-half-right {
-  background-position: right center;
-}
-.proto-grid-four .proto-item span {
-  padding: 6px 8px;
+.proto-grid-four-row .proto-cell span {
+  padding: 6px 6px 8px;
   font-size: 11px;
   color: var(--text-dim);
   flex-shrink: 0;
   text-align: center;
-  line-height: 1.35;
+  line-height: 1.3;
+}
+.proto-cell-split .proto-crop {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a14;
+}
+.proto-crop-img {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 200%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
+}
+.proto-crop-img-left {
+  left: 0;
+}
+.proto-crop-img-right {
+  left: -100%;
 }
 
 /* ═══════════════════════════════════════════════════════

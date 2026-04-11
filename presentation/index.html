@@ -277,26 +277,28 @@
           <img src="assets/extracted/m6/image26.png" alt="SATA direct-drive wiring diagram — PSU, Arduino, fans">
         </div>
       </div>
-      <div class="elec-right-stack">
-        <div class="elec-text-block">
-          <h2>Electrical &amp; Control Design</h2>
-          <div class="design-highlights design-highlights-compact">
-            <div class="highlight-block">
-              <h3>SATA Direct-Drive Topology</h3>
-              <p>Bypasses motherboard fan headers entirely. Draws power safely from PSU via fused SATA connection — large safety margin over peak current draw.</p>
-            </div>
-            <div class="highlight-block">
-              <h3>Embedded control &amp; firmware</h3>
-              <p>Hardware-timed 25 kHz PWM fan control, interrupt-driven tachometer reading, and automatic stall detection with recovery.</p>
-            </div>
-            <div class="highlight-block">
-              <h3>Acoustics strategy</h3>
-              <p>Running the EPU at lower PWM where possible reduced case noise while preserving thermal headroom — matching our measured dBA improvements at comparable CPU load.</p>
+      <div class="elec-right-wrap">
+        <div class="elec-right-stack">
+          <div class="elec-text-block">
+            <h2>Electrical &amp; Control Design</h2>
+            <div class="design-highlights design-highlights-compact">
+              <div class="highlight-block">
+                <h3>SATA Direct-Drive Topology</h3>
+                <p>Bypasses motherboard fan headers entirely. Draws power safely from PSU via fused SATA connection — large safety margin over peak current draw.</p>
+              </div>
+              <div class="highlight-block">
+                <h3>Embedded control &amp; firmware</h3>
+                <p>Hardware-timed 25 kHz PWM fan control, interrupt-driven tachometer reading, and automatic stall detection with recovery.</p>
+              </div>
+              <div class="highlight-block">
+                <h3>Acoustics strategy</h3>
+                <p>Running the EPU at lower PWM where possible reduced case noise while preserving thermal headroom — matching our measured dBA improvements at comparable CPU load.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="elec-photo-below">
-          <img src="assets/media/Joel2.jpg" alt="EPU electrical assembly mounted in the housing">
+          <div class="elec-photo-below">
+            <img src="assets/media/Joel2.jpg" alt="EPU electrical assembly mounted in the housing">
+          </div>
         </div>
       </div>
     </div>
@@ -354,30 +356,34 @@
 
   <!-- ─── ACT 4  BUILD & TEST ─── -->
 
-  <!-- SLIDE 14 — Prototype Build: 2×2 grid; desktop screenshot split left/right -->
+  <!-- SLIDE 14 — Prototype Build: one row × 4; desktop screenshot = two img crops -->
   <section class="slide" data-duration="30" data-section="Build &amp; Test">
     <div class="slide-content center-content">
       <h2>Prototype Build</h2>
-      <div class="proto-grid proto-grid-four">
-        <div class="proto-item">
+      <div class="proto-grid proto-grid-four-row">
+        <div class="proto-cell">
           <img src="assets/media/IMG_4940.jpg" alt="EPU Prototype Mounted">
           <span>EPU Prototype — Test Rig</span>
         </div>
-        <div class="proto-item">
+        <div class="proto-cell">
           <img src="assets/media/IMG_4927.jpg" alt="Test PC Interior">
           <span>PC Interior — Arctic LFIII</span>
         </div>
-        <div class="proto-item proto-item-split">
-          <div class="proto-screen-half proto-screen-half-left" style="background-image: url('assets/media/Joel1.png')" role="img" aria-label="EPU Control dashboard — left half"></div>
-          <span>Software — Dashboard (left)</span>
+        <div class="proto-cell proto-cell-split">
+          <div class="proto-crop">
+            <img src="assets/media/Joel1.png" alt="EPU Control dashboard — left half of desktop" class="proto-crop-img proto-crop-img-left">
+          </div>
+          <span>Software — Dashboard</span>
         </div>
-        <div class="proto-item proto-item-split">
-          <div class="proto-screen-half proto-screen-half-right" style="background-image: url('assets/media/Joel1.png')" role="img" aria-label="Ryzen Master and Task Manager — right half"></div>
-          <span>Software — Monitors (right)</span>
+        <div class="proto-cell proto-cell-split">
+          <div class="proto-crop">
+            <img src="assets/media/Joel1.png" alt="System monitors — right half of desktop" class="proto-crop-img proto-crop-img-right">
+          </div>
+          <span>Software — Monitors</span>
         </div>
       </div>
     </div>
-    <div class="slide-note">Four-panel layout: EPU on the rig, interior with the LF III, then the desktop capture split — left half is our EPU Control telemetry UI, right half is Ryzen Master and Task Manager under load. That is how we ran repeatable thermal and acoustic sessions.</div>
+    <div class="slide-note">One row of four panels: EPU on the rig, PC interior, then the same desktop capture split — left column shows our telemetry UI, right column shows Ryzen Master and Task Manager under load.</div>
   </section>
 
   <!-- SLIDE 15 — Test Methodology -->
