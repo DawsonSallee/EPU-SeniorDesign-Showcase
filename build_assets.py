@@ -54,6 +54,20 @@ def copy_media():
                 copied += 1
     print(f"  media: copied {copied} image files -> {MEDIA_DST}")
 
+    # Teammate additions (flat lay, software UI, assembly photos)
+    new_dir = os.path.join(MEDIA_SRC, "new")
+    if os.path.isdir(new_dir):
+        n = 0
+        for fname in os.listdir(new_dir):
+            src = os.path.join(new_dir, fname)
+            dst = os.path.join(MEDIA_DST, fname)
+            if os.path.isfile(src):
+                ext = os.path.splitext(fname)[1].lower()
+                if ext in (".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"):
+                    shutil.copy2(src, dst)
+                    n += 1
+        print(f"  media/new: copied {n} image files -> {MEDIA_DST}")
+
 
 if __name__ == "__main__":
     print("Extracting images from Word documents...")

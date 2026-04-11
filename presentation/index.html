@@ -53,14 +53,14 @@
         <h2>Meet the Team</h2>
         <div class="team-grid">
           <div class="team-card"><strong>Dawson Sallee</strong><span>Mechanical Engineering</span><span class="role">Systems Lead &amp; Controls</span></div>
-          <div class="team-card"><strong>Van Nguyen</strong><span>Mechanical Engineering</span><span class="role">CFD &amp; Thermal Analysis</span></div>
+          <div class="team-card"><strong>Van Nguyen</strong><span>Mechanical Engineering</span><span class="role">Electrical Systems &amp; DAQ</span></div>
           <div class="team-card"><strong>David Loaiza</strong><span>Mechanical Engineering</span><span class="role">Mechanical Design &amp; CAD</span></div>
-          <div class="team-card"><strong>Joel Lopez</strong><span>Mechanical Engineering</span><span class="role">Electrical &amp; Manufacturing</span></div>
+          <div class="team-card"><strong>Joel Lopez</strong><span>Mechanical Engineering</span><span class="role">CFD, Testing &amp; Software</span></div>
         </div>
         <p class="advisor-note">Faculty Advisor: <strong>Dr. Darshan Yadav</strong></p>
       </div>
     </div>
-    <div class="slide-note">We are four mechanical engineering seniors. Dawson led systems integration and controls. Van handled CFD and thermal analysis. David owned the mechanical design and CAD. Joel managed electrical systems and manufacturing. Our faculty advisor is Dr. Darshan Yadav.</div>
+    <div class="slide-note">We are four mechanical engineering seniors. Dawson led systems integration and controls. Van focused on electrical systems and data acquisition. David owned the mechanical design and CAD. Joel led CFD, experimental testing, and our telemetry and control software. Our faculty advisor is Dr. Darshan Yadav.</div>
   </section>
 
   <!-- SLIDE 3 — The Problem -->
@@ -127,9 +127,9 @@
           <div class="goal-desc">20% thermal improvement</div>
         </div>
         <div class="goal-card">
-          <div class="goal-value">&lt;30</div>
+          <div class="goal-value">&lt;35</div>
           <div class="goal-unit">dBA</div>
-          <div class="goal-desc">Quieter than stock at max load</div>
+          <div class="goal-desc">Quieter than stock at max base load (265 W)</div>
         </div>
         <div class="goal-card">
           <div class="goal-value">&lt;$65</div>
@@ -143,12 +143,12 @@
         </div>
       </div>
     </div>
-    <div class="slide-note">We defined four critical performance targets. First, increase thermal dissipation capacity to 320 watts — a 20 percent improvement. Second, reduce noise to under 30 decibels at max load. Third, keep the entire modification kit under 65 dollars. And fourth, make installation possible in under 20 minutes with just a Phillips screwdriver.</div>
+    <div class="slide-note">We defined four critical performance targets. First, increase thermal dissipation capacity to 320 watts — a 20 percent improvement. Second, keep noise under 35 dBA while quieter than the stock cooler at the same 265-watt base load. Third, keep the entire modification kit under 65 dollars. And fourth, make installation possible in under 20 minutes with just a Phillips screwdriver.</div>
   </section>
 
   <!-- SLIDE 6 — Technology Research -->
   <section class="slide" data-duration="45" data-section="Goals &amp; Approach">
-    <div class="slide-content center-content">
+    <div class="slide-content center-content tech-assessment-slide">
       <h2>Technology Assessment</h2>
       <p class="lead">We evaluated a wide spectrum of cooling and control technologies</p>
       <div class="tech-columns">
@@ -175,8 +175,9 @@
           </ul>
         </div>
       </div>
+      <img class="tech-flatlay" src="assets/media/imageDavid.png" alt="Physical samples and hardware explored during the technology study — cooling methods and control / DAQ">
     </div>
-    <div class="slide-note">Before committing to a design, we conducted extensive technology research. On the cooling side, we evaluated everything from thermal interface materials and liquid loops to exotic options like thermoelectric coolers, vapor compression refrigeration, thermosyphons, and jet impingement cooling. On the controls side, we compared microcontrollers versus single-board computers, and evaluated fuzzy logic, machine learning, and reinforcement learning control paradigms.</div>
+    <div class="slide-note">Before committing to a design, we conducted extensive technology research. On the cooling side, we evaluated everything from thermal interface materials and liquid loops to exotic options like thermoelectric coolers, vapor compression refrigeration, thermosyphons, and jet impingement cooling. On the controls side, we compared microcontrollers versus single-board computers, and evaluated fuzzy logic, machine learning, and reinforcement learning control paradigms. The photo summarizes representative hardware we studied for cooling paths and data acquisition.</div>
   </section>
 
   <!-- SLIDE 7 — Concept Selection -->
@@ -192,7 +193,7 @@
         </div>
         <div class="concept-card winner">
           <h3>External Performance Unit</h3>
-          <p>External push-pull module with silicone gasket</p>
+          <p>External push-pull module — modular case-top mount</p>
           <span class="concept-verdict">Selected: Best trade-off balance</span>
         </div>
         <div class="concept-card eliminated">
@@ -217,11 +218,11 @@
         <div class="key-stats">
           <div class="key-stat"><span class="ks-val">+31.3%</span><span class="ks-label">Volumetric airflow increase</span></div>
           <div class="key-stat"><span class="ks-val">347.9W</span><span class="ks-label">Theoretical thermal ceiling</span></div>
-          <div class="key-stat"><span class="ks-val">-92%</span><span class="ks-label">Vibration transmissibility</span></div>
+          <div class="key-stat"><span class="ks-val">Push-pull</span><span class="ks-label">Shares load across two fan rows for lower RPM at the same airflow</span></div>
         </div>
       </div>
     </div>
-    <div class="slide-note">The EPU works by adding a second row of fans on the exterior of the PC case, creating a push-pull configuration through the radiator. This effectively doubles the system's static pressure capability, allowing air to overcome the high aerodynamic impedance of the 38-millimeter thick radiator core. Our analytical P-Q curve modeling predicted a 31.3 percent increase in volumetric airflow, lifting the theoretical thermal ceiling to nearly 348 watts. The custom silicone gasket reduces vibration transmission by 92 percent.</div>
+    <div class="slide-note">The EPU works by adding a second row of fans on the exterior of the PC case, creating a push-pull configuration through the radiator. This effectively doubles the system's static pressure capability, allowing air to overcome the high aerodynamic impedance of the 38-millimeter thick radiator core. Our analytical P-Q curve modeling predicted a 31.3 percent increase in volumetric airflow, lifting the theoretical thermal ceiling to nearly 348 watts. Sharing the pressure work between two fan rows also lets us run each stage at lower RPM for a given cooling job — which is a big part of how we improved acoustics.</div>
   </section>
 
   <!-- ─── ACT 3  DESIGN DEEP-DIVE ─── -->
@@ -268,31 +269,32 @@
     <div class="slide-note">Here you can see the complete CAD assembly. On the left, the full system integration with the EPU mounted on top of a Lian Li LANCOOL 207 case. In the center, the isolated housing base showing the PETG frame and internal rib structure. On the right, the baseline Arctic Liquid Freezer III cooler that the EPU is designed to enhance.</div>
   </section>
 
-  <!-- SLIDE 11 — Silicone Gasket + Electrical -->
+  <!-- SLIDE 11 — Electrical assembly + topology (Van) -->
   <section class="slide" data-duration="30" data-section="Design">
     <div class="slide-content split-slide">
-      <div class="split-image">
-        <img src="assets/extracted/m6/image26.png" alt="Wiring Diagram">
+      <div class="split-image split-image-stack">
+        <img class="split-photo-main" src="assets/media/Joel2.jpg" alt="EPU electrical assembly mounted in the housing">
+        <img class="split-diagram-thumb" src="assets/extracted/m6/image26.png" alt="SATA direct-drive wiring reference diagram">
       </div>
       <div class="split-text">
-        <h2>Electrical &amp; Acoustic Design</h2>
+        <h2>Electrical &amp; Control Design</h2>
         <div class="design-highlights">
           <div class="highlight-block">
             <h3>SATA Direct-Drive Topology</h3>
-            <p>Bypasses motherboard fan headers entirely. Draws power safely from PSU via fused SATA connection — 328% safety margin over peak current draw.</p>
+            <p>Bypasses motherboard fan headers entirely. Draws power safely from PSU via fused SATA connection — large safety margin over peak current draw.</p>
           </div>
           <div class="highlight-block">
-            <h3>Arduino Nano V3 Controller</h3>
-            <p>Generates hardware-accurate 25 kHz PWM signal. Interrupt-driven tachometer reading with automatic stall detection and recovery.</p>
+            <h3>Embedded control &amp; firmware</h3>
+            <p>Hardware-timed 25 kHz PWM fan control, interrupt-driven tachometer reading, and automatic stall detection with recovery.</p>
           </div>
           <div class="highlight-block">
-            <h3>RTV Silicone Gasket</h3>
-            <p>Custom-molded 40A durometer gasket with accordion bellows. Reduces vibration force transmission by 92.2%.</p>
+            <h3>Acoustics strategy</h3>
+            <p>Running the EPU at lower PWM where possible reduced case noise while preserving thermal headroom — matching our measured dBA improvements at comparable CPU load.</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="slide-note">The electrical design uses what we call a SATA Direct-Drive topology. Instead of drawing power from the motherboard's fan headers — which are limited to just 1 amp — we draw power directly from the PC's power supply through a fused SATA connection. This provides a 328 percent safety margin. An Arduino Nano generates a hardware-accurate 25 kilohertz PWM signal and monitors fan RPM using interrupts. To address acoustics, we engineered a custom RTV silicone compliance gasket that reduces vibration force transmission to the PC chassis by over 92 percent.</div>
+    <div class="slide-note">The electrical path uses a SATA Direct-Drive topology so we are not limited by 1-amp motherboard headers — power comes from the PSU through a fused SATA lead. The assembly you see is our installed prototype: fans, distribution wiring, and the control electronics in the housing. The smaller schematic is the same topology we validated in design reviews. Firmware generates 25 kilohertz PWM and watches the tach line for stalls. For sound, we leaned on running fans in a push-pull arrangement at lower duty cycles when the thermal budget allows, which lines up with the acoustic data we show later.</div>
   </section>
 
   <!-- SLIDE 12 — CFD Simulation -->
@@ -350,8 +352,8 @@
   <section class="slide" data-duration="30" data-section="Build &amp; Test">
     <div class="slide-content center-content">
       <h2>Prototype Build</h2>
-      <div class="proto-grid">
-        <div class="proto-item main-proto">
+      <div class="proto-grid proto-grid-equal">
+        <div class="proto-item">
           <img src="assets/media/IMG_4940.jpg" alt="EPU Prototype Mounted">
           <span>EPU Prototype — Installed on Test Rig</span>
         </div>
@@ -360,12 +362,12 @@
           <span>Test PC Interior — Arctic LFIII Installed</span>
         </div>
         <div class="proto-item">
-          <img src="assets/media/IMG_4951.jpg" alt="Electronics">
-          <span>Control Electronics</span>
+          <img src="assets/media/Joel1.png" alt="EPU Control telemetry and software dashboard">
+          <span>Telemetry &amp; Control Software</span>
         </div>
       </div>
     </div>
-    <div class="slide-note">Here is our physical prototype. The main photo shows the completed EPU installed on our test rig — a Lian Li LANCOOL 207 case with an Intel test CPU. You can see the three Arctic P12 Pro fans mounted in the 3D-printed PETG housing, sitting on top of the case over the radiator. The interior view shows the stock Arctic Liquid Freezer III with its pump head and tubing. The electronics include the Arduino Nano control board with LED indicators and the potentiometer for manual speed control.</div>
+    <div class="slide-note">Here is our physical prototype. The left photo shows the completed EPU on the test rig. The center shows the stock Arctic Liquid Freezer III inside the case. The right panel is our EPU Control dashboard — local telemetry, manual PWM, and fault status — which is how we ran repeatable thermal and acoustic test sessions.</div>
   </section>
 
   <!-- SLIDE 15 — Test Methodology -->
@@ -481,10 +483,10 @@
             <span class="ac-verdict pass-badge">PASS</span>
           </div>
         </div>
-        <p class="acoustic-note"><strong>8.8 dBA reduction</strong> at equivalent load — roughly 50% decrease in perceived loudness</p>
+        <p class="acoustic-note"><strong>8.8 dBA reduction</strong> at equivalent 265 W load — lower fan speeds in push-pull plus balanced tuning vs. stock</p>
       </div>
     </div>
-    <div class="slide-note">The acoustic results were one of our proudest achievements. The stock cooler produced 38.1 decibels at 265 watts — exceeding our 32-decibel target. With the EPU engaged, the same 265-watt load was handled at just 29.3 decibels. That's an 8.8 decibel reduction, which represents roughly a 50 percent decrease in perceived loudness. Even at the maximum 320-watt load, we measured 31.5 decibels — still under our target. The silicone gasket and acoustic foam successfully eliminated chassis resonance and turbulence noise.</div>
+    <div class="slide-note">The acoustic results were one of our proudest achievements. The stock cooler produced 38.1 decibels at 265 watts. With the EPU engaged at the same load, we measured 29.3 decibels — an 8.8 dBA improvement. Even at higher CPU load, we stayed near our design noise budget. The chart still references our original 32 dBA line from milestone testing; our stated presentation goal was quieter than stock under the same 265-watt base load, which we clearly met.</div>
   </section>
 
   <!-- SLIDE 19 — Results Summary -->
@@ -499,7 +501,7 @@
           <tbody>
             <tr><td>Thermal Capacity (TDP)</td><td>&ge; 320 W</td><td>336.3 W</td><td class="pass-cell">PASS</td></tr>
             <tr><td>Coefficient of Performance</td><td>&ge; 19.0</td><td>25.1</td><td class="pass-cell">PASS</td></tr>
-            <tr><td>Acoustic Output @ Max</td><td>&le; 32 dBA</td><td>31.5 dBA</td><td class="pass-cell">PASS</td></tr>
+            <tr><td>Acoustic Output @ Max</td><td>&le; 35 dBA</td><td>31.5 dBA</td><td class="pass-cell">PASS</td></tr>
             <tr><td>Max Power Draw</td><td>&le; 20 W</td><td>13.39 W</td><td class="pass-cell">PASS</td></tr>
             <tr><td>Exhaust Air Delta-T</td><td>&le; 15 &deg;C</td><td>3.16 &deg;C</td><td class="pass-cell">PASS</td></tr>
             <tr><td>Stall Detection Failsafe</td><td>&le; 2s</td><td>Instant</td><td class="pass-cell">PASS</td></tr>
@@ -549,16 +551,16 @@
         <div class="impact-card">
           <div class="impact-icon">&#127758;</div>
           <h3>Environmental Impact</h3>
-          <p>The "upcycling" philosophy <strong>extends hardware life</strong> and reduces electronic waste. PETG housing and RTV silicone are durable for years of use.</p>
+          <p>The "upcycling" philosophy <strong>extends hardware life</strong> and reduces electronic waste. The PETG housing is durable for extended lab and field use.</p>
         </div>
         <div class="impact-card">
           <div class="impact-icon">&#128736;</div>
           <h3>Accessible Manufacturing</h3>
-          <p>FDM 3D printing and silicone casting enable <strong>localized, low-cost production</strong> without complex global supply chains.</p>
+          <p>FDM 3D printing enables <strong>localized, low-cost production</strong> without complex global supply chains.</p>
         </div>
       </div>
     </div>
-    <div class="slide-note">The EPU has significant broader impacts. Economically, it provides enthusiast-grade performance for 65 dollars instead of 250 — democratizing high-performance computing for students and budget users. Environmentally, our upcycling approach extends the life of existing hardware, keeping functional radiators and pumps out of landfills. And from a manufacturing perspective, our use of 3D printing and silicone casting enables localized production without relying on expensive industrial equipment or complex supply chains.</div>
+    <div class="slide-note">The EPU has significant broader impacts. Economically, it provides enthusiast-grade performance for 65 dollars instead of 250 — democratizing high-performance computing for students and budget users. Environmentally, our upcycling approach extends the life of existing hardware, keeping functional radiators and pumps out of landfills. And from a manufacturing perspective, 3D-printed housings keep early production accessible without expensive tooling.</div>
   </section>
 
   <!-- SLIDE 22 — Conclusions -->
@@ -589,7 +591,7 @@
         </div>
         <div class="future-item">
           <h3>Accelerated Life Testing</h3>
-          <p>Certify 25,000-hour MTBF target through extended thermal cycling of PETG and silicone</p>
+          <p>Certify 25,000-hour MTBF target through extended thermal cycling of PETG housing and fan assemblies</p>
         </div>
         <div class="future-item">
           <h3>Production Scaling</h3>
@@ -597,7 +599,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-note">For future work, we recommend three key areas. First, implementing an RPM Sync Offset in the firmware to eliminate the subtle harmonic beat frequencies observed during testing. Second, conducting accelerated life testing to certify the 25,000-hour MTBF target for the PETG and silicone components. And third, transitioning the housing from FDM 3D printing to injection molding for commercial-scale production.</div>
+    <div class="slide-note">For future work, we recommend three key areas. First, implementing an RPM Sync Offset in the firmware to eliminate the subtle harmonic beat frequencies observed during testing. Second, conducting accelerated life testing to certify the 25,000-hour MTBF target for the PETG housing and fan stack. And third, transitioning the housing from FDM 3D printing to injection molding for commercial-scale production.</div>
   </section>
 
   <!-- SLIDE 24 — Thank You -->

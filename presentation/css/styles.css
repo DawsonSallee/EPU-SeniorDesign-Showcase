@@ -211,6 +211,45 @@ ul li::before {
 .split-image img { width: 100%; height: auto; max-height: 780px; object-fit: contain; }
 .split-text { flex: 1; min-width: 0; }
 
+/* Stacked photo + schematic (electrical slide) */
+.split-image-stack {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 10px;
+  max-height: 820px;
+}
+.split-image-stack .split-photo-main {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-height: 560px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.split-image-stack .split-diagram-thumb {
+  max-height: 220px;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+/* Technology assessment + flat-lay photo */
+.tech-assessment-slide .tech-columns { margin-top: 8px; }
+.tech-flatlay {
+  display: block;
+  max-height: 340px;
+  width: auto;
+  max-width: 100%;
+  margin: 16px auto 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  object-fit: contain;
+}
+
 /* ─── Ken Burns ─── */
 .kenburns img {
   animation: kenburns 30s ease-in-out infinite alternate;
@@ -379,25 +418,33 @@ ul li::before {
 .callout span:last-child { font-size: 14px; color: var(--text-dim); }
 
 /* ═══════════════════════════════════════════════════════
-   PROTOTYPE GRID — fixed: equal row heights, images fill
+   PROTOTYPE GRID — three equal columns, uniform image height
    ═══════════════════════════════════════════════════════ */
-.proto-grid {
+.proto-grid-equal {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 16px; margin-top: 28px;
-  height: 700px;
+  gap: 16px;
+  margin-top: 24px;
+  height: 640px;
+  width: 100%;
+  max-width: 1720px;
 }
-.proto-item {
+.proto-grid-equal .proto-item {
   border-radius: 12px; overflow: hidden;
   background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
   display: flex; flex-direction: column;
+  min-height: 0;
 }
-.proto-item img { width: 100%; flex: 1; object-fit: cover; min-height: 0; }
-.proto-item.main-proto {
-  grid-row: 1 / 3;
+.proto-grid-equal .proto-item img {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
 }
-.proto-item span { padding: 8px 12px; font-size: 13px; color: var(--text-dim); flex-shrink: 0; }
+.proto-grid-equal .proto-item span {
+  padding: 8px 10px; font-size: 12px; color: var(--text-dim); flex-shrink: 0;
+  text-align: center; line-height: 1.35;
+}
 
 /* ═══════════════════════════════════════════════════════
    METHOD GRID
