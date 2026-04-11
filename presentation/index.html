@@ -273,8 +273,10 @@
   <section class="slide" data-duration="30" data-section="Design">
     <div class="slide-content split-slide">
       <div class="split-image split-image-stack">
+        <div class="split-diagram-panel">
+          <img src="assets/extracted/m6/image26.png" alt="SATA direct-drive wiring diagram — PSU, Arduino, fans">
+        </div>
         <img class="split-photo-main" src="assets/media/Joel2.jpg" alt="EPU electrical assembly mounted in the housing">
-        <img class="split-diagram-thumb" src="assets/extracted/m6/image26.png" alt="SATA direct-drive wiring reference diagram">
       </div>
       <div class="split-text">
         <h2>Electrical &amp; Control Design</h2>
@@ -294,7 +296,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-note">The electrical path uses a SATA Direct-Drive topology so we are not limited by 1-amp motherboard headers — power comes from the PSU through a fused SATA lead. The assembly you see is our installed prototype: fans, distribution wiring, and the control electronics in the housing. The smaller schematic is the same topology we validated in design reviews. Firmware generates 25 kilohertz PWM and watches the tach line for stalls. For sound, we leaned on running fans in a push-pull arrangement at lower duty cycles when the thermal budget allows, which lines up with the acoustic data we show later.</div>
+    <div class="slide-note">The electrical path uses a SATA Direct-Drive topology so we are not limited by 1-amp motherboard headers — power comes from the PSU through a fused SATA lead. The large diagram at the top is our SATA direct-drive reference: 5V and 12V from SATA, fused 12V bus, Arduino PWM to all fans, leader tach on D2. Below that is the installed prototype in the housing. Firmware generates 25 kilohertz PWM and watches the tach line for stalls. For sound, we used push-pull and lower PWM where thermals allowed, matching the acoustic data we show later.</div>
   </section>
 
   <!-- SLIDE 12 — CFD Simulation -->
@@ -361,7 +363,7 @@
           <img src="assets/media/IMG_4927.jpg" alt="Test PC Interior">
           <span>Test PC Interior — Arctic LFIII Installed</span>
         </div>
-        <div class="proto-item">
+        <div class="proto-item proto-item-screen">
           <img src="assets/media/Joel1.png" alt="EPU Control telemetry and software dashboard">
           <span>Telemetry &amp; Control Software</span>
         </div>

@@ -211,30 +211,44 @@ ul li::before {
 .split-image img { width: 100%; height: auto; max-height: 780px; object-fit: contain; }
 .split-text { flex: 1; min-width: 0; }
 
-/* Stacked photo + schematic (electrical slide) */
+/* Stacked schematic + photo (electrical slide) — schematic first, large & readable */
 .split-image-stack {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 10px;
-  max-height: 820px;
+  gap: 12px;
+  max-height: 900px;
+  overflow: visible;
 }
-.split-image-stack .split-photo-main {
-  flex: 1;
-  min-height: 0;
+.split-image-stack .split-diagram-panel {
+  flex: 0 0 auto;
   width: 100%;
-  max-height: 560px;
-  object-fit: cover;
+  min-height: 300px;
+  max-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
   border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.12);
 }
-.split-image-stack .split-diagram-thumb {
-  max-height: 220px;
+.split-image-stack .split-diagram-panel img {
   width: 100%;
+  height: auto;
+  max-height: 460px;
   object-fit: contain;
   object-position: center;
-  background: #fff;
-  border-radius: 8px;
-  padding: 6px;
+  display: block;
+}
+.split-image-stack .split-photo-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
 }
 
 /* Technology assessment + flat-lay photo */
@@ -440,6 +454,15 @@ ul li::before {
   min-height: 0;
   width: 100%;
   object-fit: cover;
+}
+/* Wide screenshots: show full frame (no crop) */
+.proto-grid-equal .proto-item-screen {
+  background: #0a0a14;
+}
+.proto-grid-equal .proto-item-screen img {
+  object-fit: contain;
+  object-position: center top;
+  padding: 4px 2px 0;
 }
 .proto-grid-equal .proto-item span {
   padding: 8px 10px; font-size: 12px; color: var(--text-dim); flex-shrink: 0;
