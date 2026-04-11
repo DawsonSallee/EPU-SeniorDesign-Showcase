@@ -269,34 +269,38 @@
     <div class="slide-note">Here you can see the complete CAD assembly. On the left, the full system integration with the EPU mounted on top of a Lian Li LANCOOL 207 case. In the center, the isolated housing base showing the PETG frame and internal rib structure. On the right, the baseline Arctic Liquid Freezer III cooler that the EPU is designed to enhance.</div>
   </section>
 
-  <!-- SLIDE 11 — Electrical assembly + topology (Van) -->
+  <!-- SLIDE 11 — Schematic left; text + assembly photo right -->
   <section class="slide" data-duration="30" data-section="Design">
-    <div class="slide-content split-slide">
-      <div class="split-image split-image-stack">
-        <div class="split-diagram-panel">
+    <div class="slide-content split-slide slide-elec-split">
+      <div class="elec-schematic-side">
+        <div class="elec-diagram-panel">
           <img src="assets/extracted/m6/image26.png" alt="SATA direct-drive wiring diagram — PSU, Arduino, fans">
         </div>
-        <img class="split-photo-main" src="assets/media/Joel2.jpg" alt="EPU electrical assembly mounted in the housing">
       </div>
-      <div class="split-text">
-        <h2>Electrical &amp; Control Design</h2>
-        <div class="design-highlights">
-          <div class="highlight-block">
-            <h3>SATA Direct-Drive Topology</h3>
-            <p>Bypasses motherboard fan headers entirely. Draws power safely from PSU via fused SATA connection — large safety margin over peak current draw.</p>
+      <div class="elec-right-stack">
+        <div class="elec-text-block">
+          <h2>Electrical &amp; Control Design</h2>
+          <div class="design-highlights design-highlights-compact">
+            <div class="highlight-block">
+              <h3>SATA Direct-Drive Topology</h3>
+              <p>Bypasses motherboard fan headers entirely. Draws power safely from PSU via fused SATA connection — large safety margin over peak current draw.</p>
+            </div>
+            <div class="highlight-block">
+              <h3>Embedded control &amp; firmware</h3>
+              <p>Hardware-timed 25 kHz PWM fan control, interrupt-driven tachometer reading, and automatic stall detection with recovery.</p>
+            </div>
+            <div class="highlight-block">
+              <h3>Acoustics strategy</h3>
+              <p>Running the EPU at lower PWM where possible reduced case noise while preserving thermal headroom — matching our measured dBA improvements at comparable CPU load.</p>
+            </div>
           </div>
-          <div class="highlight-block">
-            <h3>Embedded control &amp; firmware</h3>
-            <p>Hardware-timed 25 kHz PWM fan control, interrupt-driven tachometer reading, and automatic stall detection with recovery.</p>
-          </div>
-          <div class="highlight-block">
-            <h3>Acoustics strategy</h3>
-            <p>Running the EPU at lower PWM where possible reduced case noise while preserving thermal headroom — matching our measured dBA improvements at comparable CPU load.</p>
-          </div>
+        </div>
+        <div class="elec-photo-below">
+          <img src="assets/media/Joel2.jpg" alt="EPU electrical assembly mounted in the housing">
         </div>
       </div>
     </div>
-    <div class="slide-note">The electrical path uses a SATA Direct-Drive topology so we are not limited by 1-amp motherboard headers — power comes from the PSU through a fused SATA lead. The large diagram at the top is our SATA direct-drive reference: 5V and 12V from SATA, fused 12V bus, Arduino PWM to all fans, leader tach on D2. Below that is the installed prototype in the housing. Firmware generates 25 kilohertz PWM and watches the tach line for stalls. For sound, we used push-pull and lower PWM where thermals allowed, matching the acoustic data we show later.</div>
+    <div class="slide-note">On the left is our SATA direct-drive reference schematic: 5V and 12V from SATA, fused 12V bus, Arduino PWM to all fans, leader tach on D2. On the right, the bullets walk through topology, firmware, and acoustics — and below that is the real assembly in the housing. Firmware generates 25 kilohertz PWM and watches the tach line for stalls. For sound, we used push-pull and lower PWM where thermals allowed, matching the acoustic data we show later.</div>
   </section>
 
   <!-- SLIDE 12 — CFD Simulation -->
@@ -350,26 +354,30 @@
 
   <!-- ─── ACT 4  BUILD & TEST ─── -->
 
-  <!-- SLIDE 14 — Prototype Build -->
+  <!-- SLIDE 14 — Prototype Build: 2×2 grid; desktop screenshot split left/right -->
   <section class="slide" data-duration="30" data-section="Build &amp; Test">
     <div class="slide-content center-content">
       <h2>Prototype Build</h2>
-      <div class="proto-grid proto-grid-equal">
+      <div class="proto-grid proto-grid-four">
         <div class="proto-item">
           <img src="assets/media/IMG_4940.jpg" alt="EPU Prototype Mounted">
-          <span>EPU Prototype — Installed on Test Rig</span>
+          <span>EPU Prototype — Test Rig</span>
         </div>
         <div class="proto-item">
           <img src="assets/media/IMG_4927.jpg" alt="Test PC Interior">
-          <span>Test PC Interior — Arctic LFIII Installed</span>
+          <span>PC Interior — Arctic LFIII</span>
         </div>
-        <div class="proto-item proto-item-screen">
-          <img src="assets/media/Joel1.png" alt="EPU Control telemetry and software dashboard">
-          <span>Telemetry &amp; Control Software</span>
+        <div class="proto-item proto-item-split">
+          <div class="proto-screen-half proto-screen-half-left" style="background-image: url('assets/media/Joel1.png')" role="img" aria-label="EPU Control dashboard — left half"></div>
+          <span>Software — Dashboard (left)</span>
+        </div>
+        <div class="proto-item proto-item-split">
+          <div class="proto-screen-half proto-screen-half-right" style="background-image: url('assets/media/Joel1.png')" role="img" aria-label="Ryzen Master and Task Manager — right half"></div>
+          <span>Software — Monitors (right)</span>
         </div>
       </div>
     </div>
-    <div class="slide-note">Here is our physical prototype. The left photo shows the completed EPU on the test rig. The center shows the stock Arctic Liquid Freezer III inside the case. The right panel is our EPU Control dashboard — local telemetry, manual PWM, and fault status — which is how we ran repeatable thermal and acoustic test sessions.</div>
+    <div class="slide-note">Four-panel layout: EPU on the rig, interior with the LF III, then the desktop capture split — left half is our EPU Control telemetry UI, right half is Ryzen Master and Task Manager under load. That is how we ran repeatable thermal and acoustic sessions.</div>
   </section>
 
   <!-- SLIDE 15 — Test Methodology -->

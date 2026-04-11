@@ -211,44 +211,78 @@ ul li::before {
 .split-image img { width: 100%; height: auto; max-height: 780px; object-fit: contain; }
 .split-text { flex: 1; min-width: 0; }
 
-/* Stacked schematic + photo (electrical slide) — schematic first, large & readable */
-.split-image-stack {
-  flex-direction: column;
+/* Slide 11 — schematic left; narrative + assembly photo stacked right */
+.slide-content.split-slide.slide-elec-split {
   align-items: stretch;
-  justify-content: flex-start;
-  gap: 12px;
-  max-height: 900px;
-  overflow: visible;
 }
-.split-image-stack .split-diagram-panel {
-  flex: 0 0 auto;
+.slide-elec-split {
+  gap: 40px;
   width: 100%;
-  min-height: 300px;
-  max-height: 480px;
+  max-width: 1760px;
+}
+.elec-schematic-side {
+  flex: 0 0 44%;
+  max-width: 44%;
+  min-height: 0;
+  display: flex;
+}
+.elec-diagram-panel {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f4f4;
-  border-radius: 10px;
-  padding: 12px 14px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  padding: 14px 16px;
   border: 1px solid rgba(255,255,255,0.12);
+  min-height: 560px;
 }
-.split-image-stack .split-diagram-panel img {
-  width: 100%;
+.elec-diagram-panel img {
+  max-width: 100%;
+  max-height: 820px;
+  width: auto;
   height: auto;
-  max-height: 460px;
   object-fit: contain;
-  object-position: center;
   display: block;
 }
-.split-image-stack .split-photo-main {
-  flex: 1 1 auto;
-  min-height: 0;
+.elec-right-stack {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: flex-start;
+}
+.elec-text-block h2 {
+  margin-bottom: 12px;
+  font-size: 40px;
+  line-height: 1.15;
+}
+.design-highlights-compact .highlight-block {
+  padding: 10px 14px;
+}
+.design-highlights-compact .highlight-block h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.design-highlights-compact .highlight-block p {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.elec-photo-below {
+  flex: 0 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg-card);
+}
+.elec-photo-below img {
   width: 100%;
-  max-height: 320px;
+  max-height: 280px;
+  height: 280px;
   object-fit: cover;
   object-position: center;
-  border-radius: 10px;
+  display: block;
 }
 
 /* Technology assessment + flat-lay photo */
@@ -467,6 +501,53 @@ ul li::before {
 .proto-grid-equal .proto-item span {
   padding: 8px 10px; font-size: 12px; color: var(--text-dim); flex-shrink: 0;
   text-align: center; line-height: 1.35;
+}
+
+/* Slide 14 — symmetric 2×2: two photos + two halves of same desktop screenshot */
+.proto-grid-four {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+  width: 100%;
+  max-width: 1680px;
+  height: 560px;
+}
+.proto-grid-four .proto-item {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.proto-grid-four .proto-item > img {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
+}
+.proto-item-split .proto-screen-half {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background-color: #0a0a14;
+  background-repeat: no-repeat;
+  background-size: 200% auto;
+  background-position: left center;
+}
+.proto-item-split .proto-screen-half-right {
+  background-position: right center;
+}
+.proto-grid-four .proto-item span {
+  padding: 6px 8px;
+  font-size: 11px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 1.35;
 }
 
 /* ═══════════════════════════════════════════════════════
